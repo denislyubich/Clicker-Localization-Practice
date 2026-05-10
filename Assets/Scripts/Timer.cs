@@ -3,27 +3,29 @@ using TMPro;
 using UnityEngine;
 
 
-public class Timer : GameManager
+public class Timer : MonoBehaviour
 {
     private TextMeshProUGUI timerText;
     private float timer;
 
+
     private void Awake()
     {
         timerText = GetComponent<TextMeshProUGUI>();
-        timer = startingTimer;
+ 
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        timer = GameManager.instance.startingTimer;
         StartCoroutine(TimerCountdown());
     }
 
 
     IEnumerator TimerCountdown()
     {
-        while (!isGameOver)
+        while (!GameManager.instance.isGameOver)
         {
             yield return new WaitForSeconds(1);
             timer -= 1;
@@ -31,7 +33,7 @@ public class Timer : GameManager
 
             if (timer == 0)
             {
-                GameOver();
+                GameManager.instance.GameOver();
             }
         }
     }
