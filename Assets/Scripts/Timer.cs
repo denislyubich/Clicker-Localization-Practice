@@ -18,14 +18,14 @@ public class Timer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        timer = GameManager.instance.startingTimer;
+        timer = LevelManager.instance.startingTimer;
         StartCoroutine(TimerCountdown());
     }
 
 
     IEnumerator TimerCountdown()
     {
-        while (!GameManager.instance.isGameOver)
+        while (!LevelManager.instance.isGameOver)
         {
             yield return new WaitForSeconds(1);
             timer -= 1;
@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
 
             if (timer == 0)
             {
-                GameManager.instance.GameOver();
+                LevelManager.instance.GameOver();
             }
         }
     }
