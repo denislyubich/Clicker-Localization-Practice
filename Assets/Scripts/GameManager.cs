@@ -9,14 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     //Floats and ints
-    public float startingTimer = 10;
-    [HideInInspector] public int score;
     [HideInInspector] public int bestScore;
     [SerializeField] private float timeToRestart = 5;
 
-    // UI Screens
-    [SerializeField] private GameObject gameScreen;
-    [SerializeField] private GameObject endScreen;
+    [SerializeField] private GameObject[] gameScreens;
+    [SerializeField] public static bool isNameEntered;
 
     // UI Texts
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -35,22 +32,49 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         scoreText.text = "Score:" + score;
-        gameScreen.SetActive(true);
-        endScreen.SetActive(false);
+        if (!isNameEntered)
+        {
+            LoadGameScreen(0);
+        }
+
+        else
+        {
+            LoadGameScreen(1);
+        }
+        
     }
 
-    public void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isGameOver)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && gameScreens[1].activeSelf == true)
         {
             UpdateScore();
         }
+
+        if (Input.GetKeyDown(KeyCode.Return) && gameScreens[0].activeSelf == true)
+        {
+            isNameEntered = true;
+            LoadGameScreen(1);
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ExitGame();
         }
     }
+
+    void LoadGameScreen(int i)
+    {
+        foreach (GameObject gameScreen in gameScreens)
+        {
+            gameScreen.SetActive(false);
+        }
+
+        gameScreens[i].SetActive(true);
+
+    }
+
 
     private void UpdateScore()
     {
@@ -70,8 +94,7 @@ public class GameManager : MonoBehaviour
 
         PrintBestScore();
 
-        gameScreen.SetActive(false);
-        endScreen.SetActive(true);
+        LoadGameScreen(2);
 
         Invoke("RestartGame", timeToRestart);
     }

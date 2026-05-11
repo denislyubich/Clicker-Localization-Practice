@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0051e3314d259d5409cf4b7f07ed04f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  startingTimer: 10
   score: 0
   bestScore: 0
   timeToRestart: 3.5
@@ -1229,14 +1230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220df585537ba94a952694bbd06ac0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  score: 0
-  bestScore: 0
-  timeToRestart: 5
-  gameScreens: []
-  scoreText: {fileID: 0}
-  finalScoreText: {fileID: 0}
-  bestScoreText: {fileID: 0}
-  isGameOver: 0
 --- !u!1 &1280512858
 GameObject:
   m_ObjectHideFlags: 0
