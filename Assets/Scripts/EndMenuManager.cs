@@ -8,6 +8,8 @@ public class EndMenuManager : MonoBehaviour
 {
     private int score;
     private int bestScore;
+    private string playerName;
+    private string bestPlayerName;
     [SerializeField] private float timeToRestart = 5;
 
 
@@ -20,10 +22,12 @@ public class EndMenuManager : MonoBehaviour
     void Start()
     {
         score = MainManager.instance.score;
+        playerName = MainManager.instance.playerName;
 
         MainManager.instance.LoadBestScore();
 
         bestScore = MainManager.instance.bestScore;
+        bestPlayerName = MainManager.instance.bestPlayerName;
 
         finalScoreText.text = "Your final score:" + score;
 
@@ -42,15 +46,15 @@ public class EndMenuManager : MonoBehaviour
 
     void PrintBestScore()
     {
-        if (score >= bestScore)
+        if (score >= bestScore) // if best score is your current score
         {
             MainManager.instance.SaveBestScore();
-            bestScoreText.text = "Your best score:" + score;
+            bestScoreText.text = "Best Score:" + score + " by <color=blue>" + playerName + "</color>";
         }
 
-        else
+        else // if best score is not your current score
         {
-            bestScoreText.text = "Your best score:" + bestScore;
+            bestScoreText.text = "Best Score:" + bestScore + " by <color=blue>" + bestPlayerName + "</color>";
         }
     }
 

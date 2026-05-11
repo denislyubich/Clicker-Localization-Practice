@@ -8,6 +8,8 @@ public class MainManager : MonoBehaviour
 {
     [HideInInspector] public int score;
     [HideInInspector] public int bestScore;
+    [HideInInspector] public string playerName;
+    [HideInInspector] public string bestPlayerName;
 
     public static MainManager instance;
     private string saveFilePath;
@@ -25,7 +27,9 @@ public class MainManager : MonoBehaviour
 
         saveFilePath = Application.persistentDataPath + "/saveFile.json";
 
+        // Initial data
         score = 0;
+        playerName = "Anonymus";
     }
 
     public void ExitToTheMainMenu()
@@ -60,12 +64,14 @@ Application.Quit();
     class SaveData
     {
         public int score;
+        public string playerName;
     }
 
     public void SaveBestScore()
     {
         SaveData data = new SaveData();
         data.score = score;
+        data.playerName = playerName;
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(saveFilePath, json);
     }
@@ -77,6 +83,7 @@ Application.Quit();
             string json = File.ReadAllText(saveFilePath);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             bestScore = data.score;
+            bestPlayerName = data.playerName;
         }
 
 

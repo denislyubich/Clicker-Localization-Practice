@@ -748,6 +748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
   score: 0
   bestScore: 0
+  playerName: 
+  bestPlayerName: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39008dfca85074648a5e441d9e48e626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndMenuManager
-  timeToRestart: 3.5
+  timeToRestart: 4.5
   finalScoreText: {fileID: 338024612}
   bestScoreText: {fileID: 1493809442}
 --- !u!4 &1136173285
