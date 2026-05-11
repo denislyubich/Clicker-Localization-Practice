@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     //Floats and ints
+    [HideInInspector] public int score;
     [HideInInspector] public int bestScore;
+    public int startingTimer;
     [SerializeField] private float timeToRestart = 5;
 
     [SerializeField] private GameObject[] gameScreens;
