@@ -5,14 +5,25 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-
     [SerializeField] private TMP_InputField enterYourNameField;
-    
+    [SerializeField] private TextMeshProUGUI bestPlayersText;
+
+    int playerRank = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Initialize game player data, reset it to zero and null when reloading main menu
         MainManager.instance.score = 0;
         MainManager.instance.playerName = null;
+
+        // Print highscores
+        MainManager.HighScoreList data = MainManager.instance.LoadScores();
+        foreach (MainManager.HighScoreEntry entry in data.highScores)
+        {
+            playerRank++;
+            bestPlayersText.text += "0" + playerRank + " - " + entry.playerName + ":" + entry.score + "\n";
+        }
     }
 
     // Update is called once per frame
@@ -32,7 +43,7 @@ public class MenuManager : MonoBehaviour
 
     void AssignPlayerName()
     {
-        if (string.IsNullOrEmpty(enterYourNameField.text))
+        if (string.IsNullOrEmpty(enterYourNameField.text)) // Assign Anonymus if player doesn't write anything
         {
             MainManager.instance.playerName = "Anonymus";
         }

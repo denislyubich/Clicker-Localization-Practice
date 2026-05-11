@@ -21,7 +21,9 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        //Resetting the score
         MainManager.instance.score = 0;
+
         scoreText.text = "Score:" + score;
     }
 

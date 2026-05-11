@@ -1,17 +1,12 @@
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class EndMenuManager : MonoBehaviour
 {
     private int score;
-    private int bestScore;
     private string playerName;
-    private string bestPlayerName;
     [SerializeField] private float timeToRestart = 5;
-
 
 
     // UI Texts
@@ -23,11 +18,6 @@ public class EndMenuManager : MonoBehaviour
     {
         score = MainManager.instance.score;
         playerName = MainManager.instance.playerName;
-
-        MainManager.instance.LoadBestScore();
-
-        bestScore = MainManager.instance.bestScore;
-        bestPlayerName = MainManager.instance.bestPlayerName;
 
         finalScoreText.text = "Your final score:" + score;
 
@@ -46,18 +36,13 @@ public class EndMenuManager : MonoBehaviour
 
     void PrintBestScore()
     {
-        if (score >= bestScore) // if best score is your current score
-        {
-            MainManager.instance.SaveBestScore();
-            bestScoreText.text = "Best Score:" + score + " by <color=blue>" + playerName + "</color>";
-        }
-
-        else // if best score is not your current score
-        {
-            bestScoreText.text = "Best Score:" + bestScore + " by <color=blue>" + bestPlayerName + "</color>";
-        }
-    }
-
+        // Add current score to the highscores list
+        MainManager.instance.AddNewScore(playerName, score);
+        // Reload the highscores list with newly updated and ranked score
+        MainManager.HighScoreList data = MainManager.instance.LoadScores();
+        // Print best score
+        bestScoreText.text = "Best Score:" + data.highScores[0].score + " by <color=blue>" + data.highScores[0].playerName + "</color>";
+     }
 
     void RestartGame()
     {

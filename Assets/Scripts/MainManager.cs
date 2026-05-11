@@ -1,8 +1,9 @@
-using System;
-using UnityEditor;
+using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class MainManager : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class MainManager : MonoBehaviour
     [HideInInspector] public string playerName;
     [HideInInspector] public string bestPlayerName;
 
+    [SerializeField] private int highScoreLinesCount = 3;
+
     public static MainManager instance;
     private string saveFilePath;
 
     private void Awake()
     {
+        // Singleton pattern start
         if (instance != null)
         {
             Destroy(gameObject);
@@ -24,10 +28,12 @@ public class MainManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+        
+        // Singleton pattern end
 
         saveFilePath = Application.persistentDataPath + "/saveFile.json";
 
-        // Initial data
+        // Initial data for playtesting without loading Main Menu level
         score = 0;
         playerName = "Anonymus";
     }
@@ -61,31 +67,45 @@ Application.Quit();
     }
 
     [System.Serializable]
-    class SaveData
+    public class HighScoreEntry
     {
         public int score;
         public string playerName;
     }
 
-    public void SaveBestScore()
+    [System.Serializable]
+    public class HighScoreList
     {
-        SaveData data = new SaveData();
-        data.score = score;
-        data.playerName = playerName;
-        string json = JsonUtility.ToJson(data);
+        public List<HighScoreEntry> highScores = new List<HighScoreEntry>();
+    }
+
+    public void AddNewScore(string name, int score)
+    {
+        // 1. Load existing data
+        HighScoreList data = LoadScores();
+
+        // 2. Add the new entry
+        data.highScores.Add(new HighScoreEntry { playerName = name, score = score });
+
+        // 3. Optional: Sort and limit the list
+        data.highScores.Sort((x, y) => y.score.CompareTo(x.score));
+        if (data.highScores.Count > highScoreLinesCount) data.highScores.RemoveAt(highScoreLinesCount);
+
+        // 4. Save back to file
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(saveFilePath, json);
     }
 
-    public void LoadBestScore()
+    public HighScoreList LoadScores()
     {
         if (File.Exists(saveFilePath))
         {
             string json = File.ReadAllText(saveFilePath);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
-            bestScore = data.score;
-            bestPlayerName = data.playerName;
+            return JsonUtility.FromJson<HighScoreList>(json);
         }
-
-
+      
+            return new HighScoreList(); // Return empty list if no file exists
     }
+
 }
+
