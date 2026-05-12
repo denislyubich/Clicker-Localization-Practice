@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,12 @@ public class MainManager : MonoBehaviour
 
     public static MainManager instance;
     private string saveFilePath;
+
+    #if UNITY_WEBGL
+    // Import the JS function from your .jslib file
+    [DllImport("__Internal")]
+    private static extern void SyncFiles();
+    #endif
 
     private void Awake()
     {
@@ -93,6 +100,13 @@ Application.Quit();
         // 4. Save back to file
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(saveFilePath, json);
+
+        #if UNITY_WEBGL
+        {
+            SyncFiles();
+        }
+
+        #endif
     }
 
     public HighScoreList LoadScores()
