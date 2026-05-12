@@ -18,7 +18,7 @@ public class MainManager : MonoBehaviour
     public static MainManager instance;
     private string saveFilePath;
 
-    #if UNITY_WEBGL
+    #if UNITY_WEBGL && !UNITY_EDITOR
     // Import the JS function from your .jslib file
     [DllImport("__Internal")]
     private static extern void SyncFiles();
@@ -101,7 +101,7 @@ Application.Quit();
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(saveFilePath, json);
 
-        #if UNITY_WEBGL
+        #if UNITY_WEBGL && !UNITY_EDITOR
         {
             SyncFiles();
         }
