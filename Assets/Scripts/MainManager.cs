@@ -28,7 +28,6 @@ public class MainManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
-        
         // Singleton pattern end
 
         saveFilePath = Application.persistentDataPath + "/saveFile.json";
