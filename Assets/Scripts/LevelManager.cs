@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -7,8 +8,8 @@ public class LevelManager : MonoBehaviour
     //Floats and ints
     public int startingTimer = 10;
 
-    private int score;
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [HideInInspector] public int score;
+    [SerializeField] private LocalizeStringEvent scoreText;
 
     public static LevelManager instance;
 
@@ -23,8 +24,6 @@ public class LevelManager : MonoBehaviour
     {
         //Resetting the score
         MainManager.instance.score = 0;
-
-        scoreText.text = "Score:" + score;
     }
 
     private void Update()
@@ -43,7 +42,9 @@ public class LevelManager : MonoBehaviour
     void UpdateScore()
     {
         score++;
-        scoreText.text = "Score:" + score;
+        scoreText.StringReference.Arguments = new object[] { score };
+        // Force the UI to refresh the text with the new argument
+        scoreText.StringReference.RefreshString();
         Debug.Log("Score: " + score);
         MainManager.instance.score = score;
     }

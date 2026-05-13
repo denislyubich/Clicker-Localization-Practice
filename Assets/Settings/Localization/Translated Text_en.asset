@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Translated Text_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: e950834a3d7f84e47ae9584acf440409, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 6192583922128257285
+  m_TableData:
+  - m_Id: 437537513472
+    m_Localized: PRESS ENTER TO START
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2906162241536
+    m_Localized: Enter your name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233751732224
+    m_Localized: 'best players:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6430006747136
+    m_Localized: Click as fast as you can!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6730880950272
+    m_Localized: 'Score: {score-level.score}'
+    m_Metadata:
+      m_Items:
+      - rid: 6192583922128257285
+  - m_Id: 12641930354688
+    m_Localized: 'Your final score: {score-end.score}'
+    m_Metadata:
+      m_Items:
+      - rid: 6192583922128257285
+  - m_Id: 14671218515968
+    m_Localized: 'Best Score: {score-end.bestScore}  by <color=blue> {score-end.bestPlayerName}
+      </color>'
+    m_Metadata:
+      m_Items:
+      - rid: 6192583922128257285
+  references:
+    version: 2
+    RefIds:
+    - rid: 6192583922128257285
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 6730880950272
+        - id: 12641930354688
+        - id: 14671218515968
