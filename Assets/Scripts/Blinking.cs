@@ -5,13 +5,11 @@ using UnityEngine;
 public class Blinking : MonoBehaviour
 {
     [SerializeField] private float speed = 1;
-    private TextMeshProUGUI text;
-    private string startingText;
+    private RectTransform textTransform;
 
     private void Awake()
     {
-        text = GetComponent<TextMeshProUGUI>();
-        startingText = text.text;
+        textTransform = GetComponent<RectTransform>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,9 +23,9 @@ public class Blinking : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(speed);
-            text.text = "";
+            textTransform.localScale = Vector3.zero;
             yield return new WaitForSeconds(speed);
-            text.text = startingText;
+            textTransform.localScale = Vector3.one;
         }
     }
 }

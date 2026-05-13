@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,13 +9,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TMP_InputField enterYourNameField;
     [SerializeField] private TextMeshProUGUI bestPlayersText;
 
-    int playerRank = 0;
+    int playerRank = 0; // Initialized int to dynamically store ranks in the highscore table
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Initialize game player data, reset it to zero and null when reloading main menu
         MainManager.instance.score = 0;
+        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = 0;
         MainManager.instance.playerName = null;
 
         // Print highscores

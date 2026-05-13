@@ -1,5 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -7,8 +11,8 @@ public class LevelManager : MonoBehaviour
     //Floats and ints
     public int startingTimer = 10;
 
-    private int score;
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [HideInInspector] public int score;
+    [SerializeField] private LocalizeStringEvent scoreText;
 
     public static LevelManager instance;
 
@@ -23,8 +27,7 @@ public class LevelManager : MonoBehaviour
     {
         //Resetting the score
         MainManager.instance.score = 0;
-
-        scoreText.text = "Score:" + score;
+        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = 0;
     }
 
     private void Update()
@@ -43,7 +46,10 @@ public class LevelManager : MonoBehaviour
     void UpdateScore()
     {
         score++;
-        scoreText.text = "Score:" + score;
+
+        // Update global variables for localization
+        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = score;
+        
         Debug.Log("Score: " + score);
         MainManager.instance.score = score;
     }

@@ -3,6 +3,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.SceneManagement;
 
 
@@ -15,9 +18,12 @@ public class MainManager : MonoBehaviour
 
     [SerializeField] private int highScoreLinesCount = 3;
 
+    [HideInInspector]public PersistentVariablesSource localizationVarSource;
+
     public static MainManager instance;
     private string saveFilePath;
 
+    // In the WebGL version access jslib plugin to force-refresh browser data library to save data between sessions
     #if UNITY_WEBGL && !UNITY_EDITOR
     // Import the JS function from your .jslib file
     [DllImport("__Internal")]
@@ -39,9 +45,13 @@ public class MainManager : MonoBehaviour
 
         saveFilePath = Application.persistentDataPath + "/saveFile.json";
 
+        // Get source variables for localization
+        localizationVarSource = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
+
         // Initial data for playtesting without loading Main Menu level
         score = 0;
         playerName = "Anonymus";
+        (localizationVarSource["global"]["score"] as IntVariable).Value = 0;
     }
 
     public void ExitToTheMainMenu()
