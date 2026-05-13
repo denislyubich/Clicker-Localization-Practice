@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);   
+            MainManager.instance.ExitToTheMainMenu();
         }
     }
 
@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Game over!");
         isGameOver = true;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
 }

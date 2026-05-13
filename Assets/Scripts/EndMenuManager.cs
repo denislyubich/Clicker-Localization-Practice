@@ -57,7 +57,7 @@ public class EndMenuManager : MonoBehaviour
 
     void RestartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
 }

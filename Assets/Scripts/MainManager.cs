@@ -46,7 +46,9 @@ public class MainManager : MonoBehaviour
 
         saveFilePath = Application.persistentDataPath + "/saveFile.json";
 
+        #if !UNITY_WEBGL
         LocalizationSettings.InitializationOperation.WaitForCompletion();
+        #endif
 
         // Get default language pack or language pack previously selected by player
         ChangeLanguage(PlayerPrefs.GetInt("GameLanguageIndex", 0));
@@ -78,7 +80,7 @@ public class MainManager : MonoBehaviour
     public void ExitToTheMainMenu()
     {
         score = 0;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ExitGame()

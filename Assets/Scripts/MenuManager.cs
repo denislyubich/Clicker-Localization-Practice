@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             AssignPlayerName();
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
