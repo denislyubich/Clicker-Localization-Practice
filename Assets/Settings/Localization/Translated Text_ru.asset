@@ -44,14 +44,13 @@ MonoBehaviour:
       m_Items:
       - rid: 6192583922128257286
   - m_Id: 12641930354688
-    m_Localized: "\u0418\u0422\u041E\u0413\u041E\u0412\u042B\u0419 \u0421\u0427\u0401\u0422:
-      {global.score}"
+    m_Localized: "\u0412\u0410\u0428 \u0421\u0427\u0401\u0422: {global.score}"
     m_Metadata:
       m_Items:
       - rid: 6192583922128257286
   - m_Id: 14671218515968
-    m_Localized: "\u0423 \u0418\u0413\u0420\u041E\u041A\u0410 <color=blue> {global.best-player-name}
-      </color>\u041B\u0423\u0427\u0428\u0418\u0419 \u0421\u0427\u0401\u0422: {global.best-score}  "
+    m_Localized: "\u0423 \u0418\u0413\u0420\u041E\u041A\u0410 <color=blue>{global.best-player-name}</color>
+      \u041B\u0423\u0427\u0428\u0418\u0419 \u0421\u0427\u0401\u0422: {global.best-score} "
     m_Metadata:
       m_Items:
       - rid: 6192583922128257286

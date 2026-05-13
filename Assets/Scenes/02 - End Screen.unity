@@ -451,7 +451,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -845,6 +845,8 @@ MonoBehaviour:
   playerName: 
   bestPlayerName: 
   highScoreLinesCount: 3
+  localizationVarSource:
+    m_Groups: []
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1295,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 0
+          value: 16
         - localeIdentifier:
             m_Code: ru
           value: 16

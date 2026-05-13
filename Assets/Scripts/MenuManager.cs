@@ -15,8 +15,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         // Initialize game player data, reset it to zero and null when reloading main menu
-        MainManager.instance.score = 0;
-        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = 0;
+        MainManager.instance.ResetScore();
         MainManager.instance.playerName = null;
 
         // Print highscores
@@ -41,6 +40,11 @@ public class MenuManager : MonoBehaviour
         {
             MainManager.instance.ExitGame();
         }
+    }
+
+    public void ChangeLanguage(int index)
+    {
+        MainManager.instance.ChangeLanguage(index);
     }
 
     void AssignPlayerName()

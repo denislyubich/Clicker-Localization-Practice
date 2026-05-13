@@ -26,8 +26,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         //Resetting the score
-        MainManager.instance.score = 0;
-        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = 0;
+        MainManager.instance.ResetScore();
     }
 
     private void Update()

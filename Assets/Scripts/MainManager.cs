@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -45,12 +46,32 @@ public class MainManager : MonoBehaviour
 
         saveFilePath = Application.persistentDataPath + "/saveFile.json";
 
+        LocalizationSettings.InitializationOperation.WaitForCompletion();
+
+        // Get default language pack or language pack previously selected by player
+        ChangeLanguage(PlayerPrefs.GetInt("GameLanguageIndex", 0));
+
         // Get source variables for localization
         localizationVarSource = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
 
         // Initial data for playtesting without loading Main Menu level
         score = 0;
         playerName = "Anonymus";
+        (localizationVarSource["global"]["score"] as IntVariable).Value = 0;
+
+    }
+
+    public void ChangeLanguage(int index)
+    {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+            Debug.Log("Language index is " + LocalizationSettings.SelectedLocale);
+            PlayerPrefs.SetInt("GameLanguageIndex", index);
+            PlayerPrefs.Save();
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
         (localizationVarSource["global"]["score"] as IntVariable).Value = 0;
     }
 
