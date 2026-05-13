@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -24,6 +27,7 @@ public class LevelManager : MonoBehaviour
     {
         //Resetting the score
         MainManager.instance.score = 0;
+        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = 0;
     }
 
     private void Update()
@@ -42,9 +46,10 @@ public class LevelManager : MonoBehaviour
     void UpdateScore()
     {
         score++;
-        scoreText.StringReference.Arguments = new object[] { score };
-        // Force the UI to refresh the text with the new argument
-        scoreText.StringReference.RefreshString();
+
+        // Update global variables for localization
+        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = score;
+        
         Debug.Log("Score: " + score);
         MainManager.instance.score = score;
     }

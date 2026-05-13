@@ -1378,10 +1378,7 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables:
-    - name: score-level
-      variable:
-        rid: 6192583922128257288
+    m_LocalVariables: []
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -1400,11 +1397,7 @@ MonoBehaviour:
         m_CallState: 1
   references:
     version: 2
-    RefIds:
-    - rid: 6192583922128257288
-      type: {class: ObjectVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
-      data:
-        m_Value: {fileID: 1883487833}
+    RefIds: []
 --- !u!114 &2069510139
 MonoBehaviour:
   m_ObjectHideFlags: 0

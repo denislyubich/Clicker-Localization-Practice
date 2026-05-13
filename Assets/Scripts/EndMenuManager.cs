@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.SceneManagement;
 
 public class EndMenuManager : MonoBehaviour
@@ -20,6 +23,7 @@ public class EndMenuManager : MonoBehaviour
         score = MainManager.instance.score;
         playerName = MainManager.instance.playerName;
 
+        (MainManager.instance.localizationVarSource["global"]["score"] as IntVariable).Value = score;
 
         PrintBestScore();
 
@@ -44,10 +48,11 @@ public class EndMenuManager : MonoBehaviour
         // Print best score
         bestScore = data.highScores[0].score;
         bestPlayerName = data.highScores[0].playerName;
-        // bestScoreText.text = "Best Score:" + data.highScores[0].score + " by <color=blue>" + data.highScores[0].playerName + "</color>";
-        bestScoreText.StringReference.Arguments = new object[] { score, bestScore, bestPlayerName };
-        // Force the UI to refresh the text with the new argument
-        bestScoreText.StringReference.RefreshString();
+
+        // Update global variables for localization
+        (MainManager.instance.localizationVarSource["global"]["best-score"] as IntVariable).Value = bestScore;
+        (MainManager.instance.localizationVarSource["global"]["best-player-name"] as StringVariable).Value = bestPlayerName;
+
     }
 
     void RestartGame()

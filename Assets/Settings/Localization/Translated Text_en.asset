@@ -36,17 +36,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6730880950272
-    m_Localized: 'Score: {score-level.score}'
+    m_Localized: 'Score: {global.score}'
     m_Metadata:
       m_Items:
       - rid: 6192583922128257285
   - m_Id: 12641930354688
-    m_Localized: 'Your final score: {score-end.score}'
+    m_Localized: 'Your final score: {global.score}'
     m_Metadata:
       m_Items:
       - rid: 6192583922128257285
   - m_Id: 14671218515968
-    m_Localized: 'Best Score: {score-end.bestScore}  by <color=blue> {score-end.bestPlayerName}
+    m_Localized: 'Best Score: {global.best-score}  by <color=blue> {global.best-player-name}
       </color>'
     m_Metadata:
       m_Items:
