@@ -6,23 +6,26 @@ using UnityEngine.SceneManagement;
 public class PrebootManager : MonoBehaviour
 {
 
+    // This script is for WEBGL only. It loads localization settings before the game starts. The scene
+    // is skipped in other builds
+
     void Start()
     {
+
+        //Though I have a SkipPreboot script I keep it here as a failsafe
+    #if !UNITY_WEBGL
+        SceneManager.LoadScene(1);
+
+    #else
         StartCoroutine(InitializeLocalizationRoutine());
 
-        SceneManager.LoadScene(1);
+    #endif
     }
 
     private IEnumerator InitializeLocalizationRoutine()
     {
-
-#if UNITY_WEBGL
         yield return LocalizationSettings.InitializationOperation;
-
-#else
-        yield break;
-
-#endif
+        SceneManager.LoadScene(1);
     }
 
 }

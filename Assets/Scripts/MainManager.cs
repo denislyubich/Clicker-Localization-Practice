@@ -46,6 +46,7 @@ public class MainManager : MonoBehaviour
 
         saveFilePath = Application.persistentDataPath + "/saveFile.json";
 
+        // Initialize localization settings in all builds except WebGL
         #if !UNITY_WEBGL
         LocalizationSettings.InitializationOperation.WaitForCompletion();
         #endif
