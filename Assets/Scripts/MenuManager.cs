@@ -51,7 +51,7 @@ public class MenuManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(enterYourNameField.text)) // Assign Anonymus if player doesn't write anything
         {
-            MainManager.instance.playerName = "Anonymus";
+            MainManager.instance.playerName = "Anonymous";
         }
 
         else

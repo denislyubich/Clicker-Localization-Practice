@@ -59,7 +59,7 @@ public class MainManager : MonoBehaviour
 
         // Initial data for playtesting without loading Main Menu level
         score = 0;
-        playerName = "Anonymus";
+        playerName = "Anonymous";
         (localizationVarSource["global"]["score"] as IntVariable).Value = 0;
 
     }
